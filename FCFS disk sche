@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int abs_diff(int a, int b) {
+    return abs(a - b);
+}
+
+int fcfs_disk_scheduling(int tracks[], int n) {
+    int head_movement = 0;
+
+    for (int i = 1; i < n; i++) {
+        head_movement += abs_diff(tracks[i - 1], tracks[i]);
+    }
+
+    return head_movement;
+}
+
+int main() {
+    int n;
+
+    printf("Enter the number of tracks: ");
+    scanf("%d", &n);
+
+    int tracks[n];
+
+    printf("Enter the track positions:\n");
+    for (int i = 0; i < n; i++) {
+        printf("Track %d: ", i + 1);
+        scanf("%d", &tracks[i]);
+    }
+
+    int head_movement = fcfs_disk_scheduling(tracks, n);
+
+    printf("\nAverage Head Movement: %d\n", head_movement / n);
+
+    return 0;
+}
